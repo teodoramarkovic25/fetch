@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch primjer </title>
+    <style>
+       
+        @keyframes lds-dual-ring{
+            0%{
+                transform: rotate(0deg);
+            } 
+            100%{
+                transform: rotate(360deg);
+            } 
+        }
+        #my-text-area{
+            display: block;
+            width: 100%;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <button id="get-text-btn">Citaj fajl </button>
+
+    <textarea id="my-text-area"rows="30"></textarea>
+    <script>
+        let button = document.getElementById("get-text-btn");
+        let textarea = document.getElementById("my-text-area");
+     
+        button.addEventListener("click", function(){
+  
+
+fetch('https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt').then(function(response){
+            return response.text();
+}).then(function(text){
+    return "Name: " + this.name + "\n"
+        + "Address:" + this.address+"\n"
+        + "Phone:" + this.phone+"\n"
+        +"Course:" + this.course+"\n"
+    textarea.innerHTML=text;
+}).catch(function(err){
+    textarea.innerHTML="Fetch problem"+err.message;
+
+});
+
+
+        });
+
+
+
+
+    </script>
+</body>
+</html>
